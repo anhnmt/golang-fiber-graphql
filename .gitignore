@@ -17,6 +17,7 @@ bin/
 build/
 .scannerwork/
 .idea/
+.run/
 
 # Log files
 *.log

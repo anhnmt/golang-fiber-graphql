@@ -3,3 +3,14 @@
 #  postgres: "host=<host> port=<port> user=<user> dbname=<database> password=<pass>"
 #  sqlite: "file:ent?mode=memory&cache=shared&_fk=1"
 ###
+server:
+  name: Golang Fiber Simple Project
+  port: 8000
+  logger: true
+  prefork: false
+
+database:
+  driver: mysql
+  url: root:123456aA@@tcp(localhost:3306)/simple?parseTime=True
+  migrate: true
+  logger: true
