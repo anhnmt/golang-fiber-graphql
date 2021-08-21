@@ -1,0 +1,73 @@
+enum UserStatus {
+    ACTIVATED
+    DISABLED
+    DELETED
+}
+
+enum UserOrderField {
+    NAME
+    EMAIL
+    STATUS
+    CREATED_AT
+    UPDATED_AT
+}
+
+type User implements Node {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+    status: Int!
+    createdAt: Time!
+    updatedAt: Time!
+}
+
+type UserEdge {
+    node: User
+    cursor: Cursor!
+}
+
+input UserOrder {
+    direction: OrderDirection!
+    field: UserOrderField
+}
+
+type UserConnection {
+    totalCount: Int!
+    edges: [UserEdge]
+    pageInfo: PageInfo!
+}
+
+input CreateUserIn {
+    name: String!
+    email: String!
+    password: String!
+    status: UserStatus! = ACTIVATED
+}
+
+input UpdateUserIn {
+    name: String!
+    email: String!
+    password: String!
+    status: UserStatus!
+}
+
+type DeleteUserResponse {
+    success: Boolean!
+}
+
+input UsersIn {
+    pageIn: PageIn
+    orderBy: UserOrder
+    where: UserWhereInput
+}
+
+extend type Query {
+    users(input: UsersIn): UserConnection
+}
+
+extend type Mutation {
+    createUser(input: CreateUserIn!): User!
+    updateUser(id: ID!, input: UpdateUserIn!): User!
+    deleteUser(id: ID!): DeleteUserResponse
+}
