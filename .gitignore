@@ -35,3 +35,4 @@ config.yml
 
 !graph/resolver
 !graph/schema
+!graph/generated/generate.go

@@ -1,12 +1,17 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
-
 interface Node {
   id: ID!
 }
 
+"""Maps a Time GraphQL scalar to a Go time.Time struct."""
 scalar Time
+
+"""
+Define a Relay Cursor type:
+https://relay.dev/graphql/connections.htm#sec-Cursor
+"""
 scalar Cursor
 
 type PageInfo {

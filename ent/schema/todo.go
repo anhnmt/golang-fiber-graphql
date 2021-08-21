@@ -33,11 +33,7 @@ func (Todo) Fields() []ent.Field {
 			Annotations(
 				entgql.OrderField("CREATED_AT"),
 			),
-		field.Enum("status").
-			NamedValues(
-				"InProgress", "IN_PROGRESS",
-				"Completed", "COMPLETED",
-			).
+		field.String("status").
 			Default("IN_PROGRESS").
 			Annotations(
 				entgql.OrderField("STATUS"),
