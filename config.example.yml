@@ -1,0 +1,5 @@
+###
+#  mysql: "<user>:<pass>@tcp(<host>:<port>)/<database>?parseTime=True"
+#  postgres: "host=<host> port=<port> user=<user> dbname=<database> password=<pass>"
+#  sqlite: "file:ent?mode=memory&cache=shared&_fk=1"
+###
