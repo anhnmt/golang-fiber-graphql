@@ -38,6 +38,8 @@ func main() {
 		},
 	})
 
+	database.Connection()
+
 	// Config Middleware
 	middleware.Middleware(app)
 

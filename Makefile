@@ -42,5 +42,5 @@ docker.deploy: docker.build docker.run
 
 docker.dev: docker.build docker.push
 
-generate:
+go.gen:
 	go generate ./...
