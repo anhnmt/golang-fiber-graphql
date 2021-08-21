@@ -6,6 +6,7 @@ package resolver
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/xdorro/golang-fiber-project/ent"
 	"github.com/xdorro/golang-fiber-project/graph/generated"
@@ -13,7 +14,11 @@ import (
 )
 
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.CreateTodoInput) (*ent.Todo, error) {
-	panic(fmt.Errorf("not implemented"))
+	return ent.FromContext(ctx).Todo.Create().
+		SetText(*input.Text).
+		SetStatus(string(input.Status)).
+		SetPriority(*input.Priority).
+		Save(ctx)
 }
 
 func (r *mutationResolver) UpdateTodo(ctx context.Context, id string, input model.UpdateTodoInput) (*ent.Todo, error) {
@@ -25,7 +30,12 @@ func (r *mutationResolver) UpdateTodos(ctx context.Context, ids []string, input 
 }
 
 func (r *queryResolver) Todos(ctx context.Context, after *ent.Cursor, first *int, before *ent.Cursor, last *int, orderBy *ent.TodoOrder, where *ent.TodoWhereInput) (*ent.TodoConnection, error) {
-	panic(fmt.Errorf("not implemented"))
+	log.Println("Case todos")
+	return r.client.Todo.Query().
+		Paginate(ctx, after, first, before, last,
+			ent.WithTodoOrder(orderBy),
+			ent.WithTodoFilter(where.Filter),
+		)
 }
 
 func (r *todoResolver) Status(ctx context.Context, obj *ent.Todo) (model.TodoStatus, error) {
