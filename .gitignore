@@ -19,8 +19,8 @@ build/
 .idea/
 .run/
 
-ent/
-graph/
+ent/*
+graph/*
 
 # Log files
 *.log

@@ -1,0 +1,36 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+interface Node {
+  id: ID!
+}
+
+scalar Time
+scalar Cursor
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: Cursor
+  endCursor: Cursor
+}
+
+input PageIn {
+  after: Cursor
+  first: Int
+  before: Cursor
+  last: Int
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+type Query {
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+}
+
+type Mutation
