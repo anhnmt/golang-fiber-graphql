@@ -17,6 +17,10 @@ bin/
 build/
 .scannerwork/
 .idea/
+.run/
+
+ent/*
+graph/*
 
 # Log files
 *.log
@@ -24,11 +28,11 @@ build/
 # Config file
 config.yml
 
-ent/
-
 # Exclude
 !ent/schema
 !ent/entc.go
 !ent/generate.go
 
-!graph/
+!graph/resolver
+!graph/schema
+!graph/generated/generate.go
