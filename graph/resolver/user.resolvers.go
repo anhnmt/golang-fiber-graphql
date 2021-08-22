@@ -10,13 +10,16 @@ import (
 	"github.com/xdorro/golang-fiber-base-project/ent"
 	"github.com/xdorro/golang-fiber-base-project/graph/generated"
 	"github.com/xdorro/golang-fiber-base-project/graph/model"
+	"github.com/xdorro/golang-fiber-base-project/pkg/jwt"
 )
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserInput) (*ent.User, error) {
+	hashPassword, _ := jwt.HashPassword(input.Password)
+
 	return ent.FromContext(ctx).User.Create().
 		SetName(input.Name).
 		SetEmail(input.Email).
-		SetPassword(input.Password).
+		SetPassword(hashPassword).
 		SetStatus(input.Status.String()).
 		Save(ctx)
 }
@@ -37,8 +40,8 @@ func (r *queryResolver) Users(ctx context.Context, input *model.UsersIn) (*ent.U
 		)
 }
 
-func (r *userResolver) Status(ctx context.Context, obj *ent.User) (int, error) {
-	panic(fmt.Errorf("not implemented"))
+func (r *userResolver) Status(ctx context.Context, obj *ent.User) (model.UserStatus, error) {
+	return model.UserStatus(obj.Status), nil
 }
 
 // User returns generated.UserResolver implementation.

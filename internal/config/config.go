@@ -15,7 +15,6 @@ type configuration struct {
 func Config() (cfg *configuration) {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
-
 	viper.AutomaticEnv()
 
 	if err := viper.ReadInConfig(); err != nil {

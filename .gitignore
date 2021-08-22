@@ -33,6 +33,7 @@ config.yml
 !ent/entc.go
 !ent/generate.go
 
+!graph/handler
 !graph/resolver
 !graph/schema
 !graph/generated/generate.go

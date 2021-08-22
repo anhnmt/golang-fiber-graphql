@@ -16,10 +16,9 @@ type User implements Node {
     id: ID!
     name: String!
     email: String!
-    password: String!
-    status: Int!
-    createdAt: Time!
-    updatedAt: Time!
+    status: UserStatus!
+    createdAt: Time
+    updatedAt: Time
 }
 
 type UserEdge {

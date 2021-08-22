@@ -1,0 +1,21 @@
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+type Token {
+    token_type: String!
+    access_token: String!
+    token_expired: Int!
+    refresh_token: String!
+    refresh_expired: Int!
+}
+
+extend type Query {
+    me: User
+}
+
+extend type Mutation {
+    token(input: LoginInput!): Token!
+    refresh: Token!
+}
