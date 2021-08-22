@@ -13,7 +13,12 @@ import (
 )
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserIn) (*ent.User, error) {
-	panic(fmt.Errorf("not implemented"))
+	return ent.FromContext(ctx).User.Create().
+		SetName(input.Name).
+		SetEmail(input.Email).
+		SetPassword(input.Password).
+		SetStatus(string(input.Status)).
+		Save(ctx)
 }
 
 func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.UpdateUserIn) (*ent.User, error) {
@@ -25,7 +30,11 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (*model.De
 }
 
 func (r *queryResolver) Users(ctx context.Context, input *model.UsersIn) (*ent.UserConnection, error) {
-	panic(fmt.Errorf("not implemented"))
+	return r.client.User.Query().
+		Paginate(ctx, input.PageIn.After, input.PageIn.First, input.PageIn.Before, input.PageIn.Last,
+			ent.WithUserOrder(input.OrderBy),
+			ent.WithUserFilter(input.Where.Filter),
+		)
 }
 
 func (r *userResolver) Status(ctx context.Context, obj *ent.User) (int, error) {
