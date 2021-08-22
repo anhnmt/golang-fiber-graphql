@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/xdorro/golang-fiber-project/ent"
-	"github.com/xdorro/golang-fiber-project/graph/generated"
+	"github.com/xdorro/golang-fiber-base-project/ent"
+	"github.com/xdorro/golang-fiber-base-project/graph/generated"
 )
 
 func (r *queryResolver) Node(ctx context.Context, id string) (ent.Noder, error) {

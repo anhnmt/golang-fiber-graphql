@@ -2,8 +2,8 @@ package resolver
 
 import (
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/xdorro/golang-fiber-project/ent"
-	"github.com/xdorro/golang-fiber-project/graph/generated"
+	"github.com/xdorro/golang-fiber-base-project/ent"
+	"github.com/xdorro/golang-fiber-base-project/graph/generated"
 )
 
 // This file will not be regenerated automatically.

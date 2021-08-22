@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/favicon"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/xdorro/golang-fiber-project/internal/config"
+	"github.com/xdorro/golang-fiber-base-project/internal/config"
 )
 
 func Middleware(a *fiber.App) {

@@ -38,14 +38,14 @@ type UserConnection {
     pageInfo: PageInfo!
 }
 
-input CreateUserIn {
+input CreateUserInput {
     name: String!
     email: String!
     password: String!
     status: UserStatus! = ACTIVATED
 }
 
-input UpdateUserIn {
+input UpdateUserInput {
     name: String!
     email: String!
     password: String!
@@ -67,7 +67,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    createUser(input: CreateUserIn!): User!
-    updateUser(id: ID!, input: UpdateUserIn!): User!
+    createUser(input: CreateUserInput!): User!
+    updateUser(id: ID!, input: UpdateUserInput!): User!
     deleteUser(id: ID!): DeleteUserResponse
 }

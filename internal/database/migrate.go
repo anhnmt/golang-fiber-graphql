@@ -2,8 +2,8 @@ package database
 
 import (
 	"context"
-	"github.com/xdorro/golang-fiber-project/ent"
-	"github.com/xdorro/golang-fiber-project/ent/migrate"
+	"github.com/xdorro/golang-fiber-base-project/ent"
+	"github.com/xdorro/golang-fiber-base-project/ent/migrate"
 	"log"
 )
 

@@ -1,4 +1,4 @@
-APP_NAME=golang-fiber-project
+APP_NAME=golang-fiber-base-project
 APP_VERSION=1.0.0
 BUILD_DIR=./build
 DOCKER_LOCAL=ghcr.io/xdorro

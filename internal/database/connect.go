@@ -1,8 +1,8 @@
 package database
 
 import (
-	"github.com/xdorro/golang-fiber-project/ent"
-	"github.com/xdorro/golang-fiber-project/internal/config"
+	"github.com/xdorro/golang-fiber-base-project/ent"
+	"github.com/xdorro/golang-fiber-base-project/internal/config"
 	"log"
 	"sync"
 

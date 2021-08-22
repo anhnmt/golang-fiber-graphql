@@ -7,9 +7,9 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/fiber/v2"
-	"github.com/xdorro/golang-fiber-project/graph/resolver"
-	"github.com/xdorro/golang-fiber-project/internal/config"
-	"github.com/xdorro/golang-fiber-project/internal/database"
+	"github.com/xdorro/golang-fiber-base-project/graph/resolver"
+	"github.com/xdorro/golang-fiber-base-project/internal/config"
+	"github.com/xdorro/golang-fiber-base-project/internal/database"
 )
 
 // graphqlRoute: handler graphql query

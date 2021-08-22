@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/xdorro/golang-fiber-project/pkg/util"
+	"github.com/xdorro/golang-fiber-base-project/pkg/util"
 )
 
 // notFoundRoute: Handler page not found 404

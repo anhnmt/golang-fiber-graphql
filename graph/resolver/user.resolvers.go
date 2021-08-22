@@ -7,21 +7,21 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/xdorro/golang-fiber-project/ent"
-	"github.com/xdorro/golang-fiber-project/graph/generated"
-	"github.com/xdorro/golang-fiber-project/graph/model"
+	"github.com/xdorro/golang-fiber-base-project/ent"
+	"github.com/xdorro/golang-fiber-base-project/graph/generated"
+	"github.com/xdorro/golang-fiber-base-project/graph/model"
 )
 
-func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserIn) (*ent.User, error) {
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.CreateUserInput) (*ent.User, error) {
 	return ent.FromContext(ctx).User.Create().
 		SetName(input.Name).
 		SetEmail(input.Email).
 		SetPassword(input.Password).
-		SetStatus(string(input.Status)).
+		SetStatus(input.Status.String()).
 		Save(ctx)
 }
 
-func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.UpdateUserIn) (*ent.User, error) {
+func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.UpdateUserInput) (*ent.User, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
