@@ -28,7 +28,7 @@ func Authenticate(ctx context.Context, input *model.LoginInput) (*model.Token, e
 	}
 
 	if ok := jwt.VerifyPassword(input.Password, currentUser.Password); ok {
-		return jwt.GenerateToken(currentUser.Email)
+		return jwt.GenerateToken(currentUser)
 	}
 
 	return nil, errors.New("Password wrong")

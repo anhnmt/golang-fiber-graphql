@@ -3,6 +3,7 @@ package jwt
 import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/xdorro/golang-fiber-base-project/ent"
 	"github.com/xdorro/golang-fiber-base-project/graph/model"
 	"github.com/xdorro/golang-fiber-base-project/internal/config"
 	"golang.org/x/crypto/bcrypt"
@@ -15,7 +16,7 @@ func HashPassword(password string) (string, error) {
 	return string(bytes), err
 }
 
-func GenerateToken(email string) (*model.Token, error) {
+func GenerateToken(currentUser *ent.User) (*model.Token, error) {
 	jwtConfig := config.Jwt()
 
 	if jwtConfig.SecretKey == "" {
@@ -23,13 +24,13 @@ func GenerateToken(email string) (*model.Token, error) {
 	}
 
 	tokenExpired := time.Now().Add(time.Minute * time.Duration(jwtConfig.AccessToken.ExpiredAt)).Unix()
-	accessToken, err := GenerateJwtToken(email, jwtConfig.SecretKey, tokenExpired)
+	accessToken, err := GenerateJwtToken(currentUser, jwtConfig.SecretKey, tokenExpired)
 	if err != nil {
 		return nil, err
 	}
 
 	refreshExpired := time.Now().Add(time.Minute * time.Duration(jwtConfig.RefreshToken.ExpiredAt)).Unix()
-	refreshToken, err := GenerateJwtToken(email, jwtConfig.SecretKey, refreshExpired)
+	refreshToken, err := GenerateJwtToken(currentUser, jwtConfig.SecretKey, refreshExpired)
 	if err != nil {
 		return nil, err
 	}
@@ -49,14 +50,15 @@ func VerifyPassword(password, hash string) bool {
 	return err == nil
 }
 
-func GenerateJwtToken(email string, secretKey string, expiredAt int64) (token string, err error) {
+func GenerateJwtToken(currentUser *ent.User, secretKey string, expiredAt int64) (token string, err error) {
 	// Create token
 	newToken := jwt.New(jwt.SigningMethodHS256)
 	// Set claims
 	// This is the information which frontend can use
 	// The backend can also decode the token and get admin etc.
 	claims := newToken.Claims.(jwt.MapClaims)
-	claims["email"] = email
+	claims["user_id"] = currentUser.ID
+	claims["email"] = currentUser.Email
 	claims["expired"] = expiredAt
 
 	token, err = newToken.SignedString([]byte(secretKey))
