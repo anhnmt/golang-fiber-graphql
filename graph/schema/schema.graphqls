@@ -2,7 +2,7 @@
 #
 # https://gqlgen.com/getting-started/
 interface Node {
-  id: ID!
+    id: ID!
 }
 
 """Maps a Time GraphQL scalar to a Go time.Time struct."""
@@ -15,27 +15,27 @@ https://relay.dev/graphql/connections.htm#sec-Cursor
 scalar Cursor
 
 type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: Cursor
-  endCursor: Cursor
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: Cursor
+    endCursor: Cursor
 }
 
 input PageIn {
-  after: Cursor
-  first: Int
-  before: Cursor
-  last: Int
+    after: Cursor
+    first: Int
+    before: Cursor
+    last: Int
 }
 
 enum OrderDirection {
-  ASC
-  DESC
+    ASC
+    DESC
 }
 
 type Query {
-  node(id: ID!): Node
-  nodes(ids: [ID!]!): [Node]!
+    node(id: ID!): Node
+    nodes(ids: [ID!]!): [Node]!
 }
 
 type Mutation

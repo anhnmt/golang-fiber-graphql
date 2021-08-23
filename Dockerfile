@@ -30,11 +30,8 @@ WORKDIR /root/
 COPY --from=builder /app/main .
 COPY --from=builder /app/config.yml .
 
-ENV SERVER_PORT=8000 \
-    SERVER_HOST=0.0.0.0
-
-# Expose port 8080 to the outside world
-EXPOSE 8080
+# Expose port 8000 to the outside world
+EXPOSE 8000
 
 # Command to run the executable
 ENTRYPOINT ["./main"]
